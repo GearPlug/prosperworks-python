@@ -152,7 +152,6 @@ class Client(object):
         Returns:
         """
         endpoint = "leads"
-        print(kwargs)
         return self._post(endpoint, json=kwargs)
 
     # People
@@ -549,7 +548,7 @@ class Client(object):
         endpoint = "webhooks"
         return self._get(endpoint)
 
-    def create_new_subscription(self, **kwargs):
+    def create_new_subscription(self, body):
         """
         Return dict with info of the new task created
         "event" = "new" | "update" | "delete"
@@ -569,7 +568,7 @@ class Client(object):
         Returns:
         """
         endpoint = "webhooks"
-        return self._post(endpoint, json=kwargs)
+        return self._post(endpoint, json=body)
 
     def delete_subscription(self, _id):
         """
@@ -606,7 +605,6 @@ class Client(object):
             'Content-Type': "application/json"
         }
         url = self.base_url + endpoint
-        print(url)
         return self._parse(requests.request(method, url, headers=_headers, **kwargs))
 
     def _parse(self, response):
